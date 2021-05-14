@@ -1,0 +1,23 @@
+---
+
+ - name: Create BDD {{ Bdd }}
+   mysql_db:
+     name: "{{ Bdd }}"
+     state: present
+
+ - name: Create BDD user {{ BddUser }}
+   mysql_user:
+    name: "{{ BddUser }}"
+    password: "{{ BddPassword }}"
+    priv: '*.*:ALL,GRANT'
+    host: "%"
+    state: present
+
+ - name: Allow remote connection to MysqlServer
+   lineinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: "bind-address"
+    line: "#bind-address            = 127.0.0.1"
+   notify:
+    - Restart Mysql
+

@@ -1,0 +1,11 @@
+---
+
+ - name: Update and Upgrade host
+   apt:
+    update_cache: yes
+    upgrade: yes
+
+ - name: Install latest version Mysql and tools
+   apt: 
+    name: ['python3-mysqldb', 'mysql-server']
+    state: latest

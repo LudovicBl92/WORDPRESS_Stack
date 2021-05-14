@@ -1,0 +1,6 @@
+---
+
+ - name: Create the user == {{ BddUser }} with username variable 
+   user: 
+    name: "{{ BddUser }}"
+    password: "{{ BddPassword | password_hash('sha512') }}"

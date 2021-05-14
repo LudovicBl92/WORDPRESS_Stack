@@ -1,0 +1,7 @@
+---
+# vars file for Mysql
+Bdd: "WORDPRESS"
+
+BddUser: "wordpressuser"
+
+BddPassword: "123456"

@@ -1,0 +1,30 @@
+---
+
+ - name: Check if Wordpress exist
+   stat:
+    path: /"var/www/html/wordpress/"
+   register: check_wordpress
+
+ - name: Download tar.gz file
+   unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: "/var/www/html/"
+    remote_src: yes
+   when: check_wordpress.stat.exists == False
+
+ - name: Remove index.html file
+   file:
+    path: "/var/www/html/index.html"
+    state: absent
+
+ - name: Remove wp-config-sample.php
+   file:
+    path: "/var/www/html/wordpress/wp-config-sample.php"
+    state: absent
+
+ - name: Copy Template config-sample.php
+   template: 
+    src: /etc/ansible/roles/WORDPRESS/WORDPRESS/templates/wp-config.j2
+    dest: /var/www/html/wordpress/wp-config.php
+   notify:
+    - Restart Apache2

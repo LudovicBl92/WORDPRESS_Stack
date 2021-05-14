@@ -1,0 +1,5 @@
+---
+# tasks file for Mysql
+- import_tasks: create-user.yml
+- import_tasks: install-bdd.yml
+- import_tasks: config-bdd.yml

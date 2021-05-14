@@ -1,0 +1,17 @@
+---
+
+ - name: Update and upgrade host
+   apt:
+    update_cache: yes
+    upgrade: yes
+
+ - name: Install latest version Apache and tools
+   apt:
+    name: ['apache2', 'php-common', 'php-mysql', 'python-mysqldb', 'libapache2-mod-php', 'wget', 'mysql-client']
+    state: latest
+
+ - name: Update default Apache site
+   lineinfile:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    regexp: "(.)+DocumentRoot /var/www/html"
+    line: "        DocumentRoot /var/www/html/wordpress"

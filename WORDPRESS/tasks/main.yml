@@ -1,0 +1,5 @@
+---
+# tasks file for WORDPRESS
+- import_tasks: install_Apache.yml
+- import_tasks: install_Wordpress.yml
+
