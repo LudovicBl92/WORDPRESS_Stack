@@ -1,12 +1,10 @@
 --- 
  - hosts: group2
-   become: yes
 
    roles:
     - Mysql
 
  - hosts: group1
-   become: yes
 
    roles:
     - WORDPRESS
